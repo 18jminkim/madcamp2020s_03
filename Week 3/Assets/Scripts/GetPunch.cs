@@ -14,6 +14,6 @@ public class GetPunch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject.Find("Player1")
+        GameObject.Find("Player1");
     }
 }
