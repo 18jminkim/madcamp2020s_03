@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class RagdollController : MonoBehaviour
 {
-    public bool isDead;
+
+    public float power = 100f;
+    public Transform player1;
+    public Transform player2;
+    public bool isDead; // for debugging only.
     public CharacterController characterController;
-    
-    private void OnCollisionEnter(Collision collision)
-    {
-        die();
-        
-    }
+
+    public Rigidbody rb;
+
+    public float speed;
+    public Animator animator;
+    public bool run;
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+       
         setRigidbodyState(true);
         setColliderState(false);
     }
@@ -22,6 +31,8 @@ public class RagdollController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         if (isDead)
         {
             die();
@@ -29,6 +40,14 @@ public class RagdollController : MonoBehaviour
         else
         {
             revive();
+        }
+
+
+
+        // move if alive.
+        if (!isDead)
+        {
+            move();
         }
         
     }
@@ -39,6 +58,7 @@ public class RagdollController : MonoBehaviour
         setRigidbodyState(false);
         setColliderState(true);
         characterController.enabled = false;
+        isDead = true;
 
 
     }
@@ -50,8 +70,27 @@ public class RagdollController : MonoBehaviour
         setRigidbodyState(true);
         setColliderState(false);
         characterController.enabled = true;
+        isDead = false;
 
 
+
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Punch")
+        {
+            //rb.isKinematic = false;
+            die();
+
+            Vector3 direction = player2.position - player1.position;
+            rb.AddForce(direction.normalized * power, ForceMode.Impulse);
+            Debug.Log("punch");
+            
+
+            Invoke("revive", 2f);
+
+        }
     }
 
 
@@ -86,6 +125,72 @@ public class RagdollController : MonoBehaviour
         {
             GetComponent<Rigidbody>().isKinematic = !state;
         }
+    }
+
+
+    // receives keyboard input to move the character.
+    void move ()
+    {
+        run = false;
+        //wasd로만 움직이게 해놨음
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            //transform.Translate(Vector3.right * speed);
+            characterController.Move(Vector3.right * speed);
+            run = true;
+            // animator.SetBool("RightTurn", true);
+        }
+
+        // else
+        // {
+        //     animator.SetBool("RightTurn", false);
+        // }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            //transform.Translate(-Vector3.right * speed);
+            characterController.Move(-Vector3.right * speed);
+            run = true;
+
+            // animator.SetBool("LeftTurn", true);
+        }
+        // else
+        // {
+        //     animator.SetBool("LeftTurn", false);
+        // }
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            //transform.Translate(Vector3.forward * speed);
+            characterController.Move(Vector3.forward * speed);
+            run = true;
+            // animator.SetBool("Walking", true);
+        }
+        // else
+        // {
+        //     animator.SetBool("Walking", false);
+        // }
+
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            //transform.Translate(-Vector3.forward * speed);
+            characterController.Move(-Vector3.forward * speed);
+            run = true;
+        }
+
+        animator.SetBool("Run", run);
+
+
+
+        if (Input.GetKey(KeyCode.G))
+        {
+            animator.SetBool("Punch", true);
+        }
+        else
+        {
+            animator.SetBool("Punch", false);
+        }
+
     }
 
 

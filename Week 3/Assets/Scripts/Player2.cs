@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
-
+    public float power;
     public Transform player1;
     public Transform player2;
+
     Rigidbody rigidBody;
 
     void Start()
@@ -25,7 +26,7 @@ public class Player2 : MonoBehaviour
         if (collision.gameObject.tag == "Punch")
         {
             Vector3 direction = player2.position - player1.position;
-            rigidBody.AddForce(direction, ForceMode.Impulse);
+            rigidBody.AddForce(direction.normalized * power, ForceMode.Impulse);
             Debug.Log("punch");
         }
     }
