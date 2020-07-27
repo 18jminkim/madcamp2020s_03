@@ -10,8 +10,13 @@ public class GetPunch1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         boxCollider = GameObject.Find("Player2").GetComponent<BoxCollider>();
-        boxCollider.enabled = false;
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = false;
+
+        }
     }
 
     // Update is called once per frame
@@ -19,12 +24,20 @@ public class GetPunch1 : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.G))
         {
-			boxCollider.enabled = true;
-            Debug.Log("활성화 되야함");
+            if (boxCollider != null)
+            {
+                boxCollider.enabled = true;
+
+            }
+            //Debug.Log("활성화 되야함");
 		}
         else
         {
-            boxCollider.enabled = false;
+            if (boxCollider != null)
+            {
+                boxCollider.enabled = false;
+
+            }
         }
     }
 

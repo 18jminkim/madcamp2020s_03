@@ -23,7 +23,7 @@ public class Player1 : MonoBehaviour
         //wasd로만 움직이게 해놨음
         if(Input.GetKey(KeyCode.D)) 
         {
-			transform.Translate (Vector3.right * speed);
+			transform.Translate (Vector3.right * speed * Time.deltaTime);
             
             run = true;
             // animator.SetBool("RightTurn", true);
@@ -36,7 +36,7 @@ public class Player1 : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-			transform.Translate (-Vector3.right * speed);
+			transform.Translate (-Vector3.right * speed * Time.deltaTime);
             run = true;
 
             // animator.SetBool("LeftTurn", true);
@@ -48,7 +48,7 @@ public class Player1 : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-			transform.Translate (Vector3.forward * speed);
+			transform.Translate (Vector3.forward * speed * Time.deltaTime);
             run = true;
             // animator.SetBool("Walking", true);
         } 
@@ -59,7 +59,7 @@ public class Player1 : MonoBehaviour
 
 		if(Input.GetKey(KeyCode.S))
         {
-			transform.Translate (-Vector3.forward * speed);
+			transform.Translate (-Vector3.forward * speed * Time.deltaTime);
             run = true;
         }
 

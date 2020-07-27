@@ -20,7 +20,7 @@ public class GetPunch2 : MonoBehaviour
         if(Input.GetKey(KeyCode.Period))
         {
 			boxCollider.enabled = true;
-            Debug.Log("활성화 되야함");
+            //Debug.Log("활성화 되야함");
 		}
         else
         {

@@ -199,6 +199,7 @@ MonoBehaviour:
   groundCheck: {fileID: 0}
   speed: 0.01
   animator: {fileID: 701620266}
+  run: 0
 --- !u!1001 &8771249523257023873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269,7 +270,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 410f9acd6a4d73d49864d5650cce584d,
         type: 3}
       propertyPath: m_Name
-      value: Player1
+      value: Player1 Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 410f9acd6a4d73d49864d5650cce584d, type: 3}
