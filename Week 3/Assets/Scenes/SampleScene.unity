@@ -155,19 +155,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &701620264
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701620261}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.08, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &701620265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +170,7 @@ MonoBehaviour:
   groundCheck: {fileID: 0}
   speed: 0.01
   animator: {fileID: 701620266}
+  run: 0
 --- !u!95 &701620266
 Animator:
   serializedVersion: 3
@@ -431,19 +419,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &986925139
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986925135}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.05, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &986925140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,6 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f34a59b911675e4e9f40f0ac15fec9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  power: 0
   player1: {fileID: 701620262}
   player2: {fileID: 986925136}
 --- !u!1 &1192584732 stripped
@@ -464,13 +440,32 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1546134364}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &1192584733
+--- !u!65 &1192584735
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192584732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.08, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1304957641 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 916439097795205407, guid: 04ebd9e382a28ec45bb6cf6e9778b13f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2137616499}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1304957644
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304957641}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
