@@ -12,14 +12,37 @@ public class P1 : MonoBehaviour
     public CharacterController characterController;
 
     public Rigidbody rb;
+    //public Rigidbody body;
+    Vector3 velocity;
+    bool isGrounded;
+
 
     public float speed = 1f;
+    public float gravity = -20f;
+    public float jumpHeight = 3f;
+
+
+
+    public Transform groundCheck;
+    public float groundDistance = 0.2f;
+    public LayerMask groundMask;
+
+
     public Animator animator;
     public bool run;
     public bool moveable = true;
     public Collider rightFist;
-    public bool punch = true;
+    public bool punch;
+    //public float height;
 
+
+    public float turnSmoothTime = 0.1f;
+    float turnSmoothVelocity;
+
+    public Vector3 direction = new Vector3(0f, 0f, 0f);
+
+
+    Collider jumpCollider;
 
 
 
@@ -30,33 +53,51 @@ public class P1 : MonoBehaviour
         setRigidbodyState(true);
         setColliderState(false);
         setRightPunch(false);
+
+        jumpCollider = groundCheck.GetComponent<Collider>();
+
+
+
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        //height = me.position.y;
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isDead)
         {
             die();
+            //characterController.center = me.position + new Vector3(0f, 0.91f, 0f);
         }
         else
         {
             revive();
         }
 
-
-
-        // move if alive.
         if (!isDead && moveable)
         {
             move();
         }
 
-        //characterController.center = rb.position;
+        if (isGrounded && (velocity.y < -1))
+        {
+            velocity.y = -2f;
+            animator.SetBool("Jump", false);
+        }
+
+        jumpCollider.enabled = true;
+
+
+
+
 
     }
+
 
     public void die()
     {
@@ -66,7 +107,6 @@ public class P1 : MonoBehaviour
         characterController.enabled = false;
         isDead = true;
         setRightPunch(false);
-
 
     }
 
@@ -79,6 +119,8 @@ public class P1 : MonoBehaviour
         characterController.enabled = true;
         isDead = false;
         setRightPunch(false);
+        //me.SetPositionAndRotation(characterController.center, new Quaternion()) ;
+
 
 
 
@@ -87,19 +129,19 @@ public class P1 : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
 
-       
         if (collision.gameObject.tag == "P2")
         {
-            Debug.Log("Punch received");
             setRightPunch(false);
             //rb.isKinematic = false;
+            Debug.Log("Punch received");
+
             die();
 
             Vector3 direction = me.position - opponent.position;
             rb.AddForce(direction.normalized * power, ForceMode.Impulse);
             Debug.Log("punch");
 
-            
+
             Invoke("revive", 2f);
 
         }
@@ -139,7 +181,7 @@ public class P1 : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic = !state;
         }
 
-
+        //groundCheck.GetComponent<Collider>().enabled = true;
         rightFist.enabled = true;
     }
 
@@ -150,75 +192,123 @@ public class P1 : MonoBehaviour
         rightFist.enabled = state;
         animator.SetBool("Punch", state);
     }
-
     // receives keyboard input to move the character.
     void move()
     {
+
+
+        // jump.
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("jump key detected.");
+            jump();
+            animator.SetBool("Jump", true);
+
+        }
+
+
+        // punch.
         if (Input.GetKey(KeyCode.G))
         {
+            //Debug.Log("Punch key detected.");
             setRightPunch(true);
+            //Invoke("disableRightPunch", 10f);
             return;
         }
         else
         {
             setRightPunch(false);
-
         }
 
 
-        run = false;
-        //wasd로만 움직이게 해놨음
+
+
+
+
+        direction = new Vector3(0f, 0f, 0f);
+
+
+
+
+        // not punching. Can run.
+        //run = false;
         if (Input.GetKey(KeyCode.D))
         {
             //transform.Translate(Vector3.right * speed);
-            characterController.Move(Vector3.right * speed * Time.deltaTime);
-            run = true;
-            // animator.SetBool("RightTurn", true);
+            //characterController.Move(Vector3.right * speed * Time.deltaTime);
+
+            direction.x += 1f;
         }
 
-        // else
-        // {
-        //     animator.SetBool("RightTurn", false);
-        // }
+
 
         if (Input.GetKey(KeyCode.A))
         {
             //transform.Translate(-Vector3.right * speed);
-            characterController.Move(-Vector3.right * speed * Time.deltaTime);
-            run = true;
-
-            // animator.SetBool("LeftTurn", true);
+            //characterController.Move(-Vector3.right * speed * Time.deltaTime);
+            direction.x -= 1f;
         }
-        // else
-        // {
-        //     animator.SetBool("LeftTurn", false);
-        // }
+
 
         if (Input.GetKey(KeyCode.W))
         {
             //transform.Translate(Vector3.forward * speed);
-            characterController.Move(Vector3.forward * speed * Time.deltaTime);
-            run = true;
-            // animator.SetBool("Walking", true);
+            //characterController.Move(Vector3.forward * speed * Time.deltaTime);
+
+            direction.z += 1f;
+
         }
-        // else
-        // {
-        //     animator.SetBool("Walking", false);
-        // }
+
 
         if (Input.GetKey(KeyCode.S))
         {
             //transform.Translate(-Vector3.forward * speed);
-            characterController.Move(-Vector3.forward * speed * Time.deltaTime);
+            //characterController.Move(-Vector3.forward * speed * Time.deltaTime);
+
+            direction.z -= 1f;
+
+        }
+
+
+        velocity.y += gravity * Time.deltaTime;
+
+        characterController.Move(velocity * Time.deltaTime);
+
+        if (direction.normalized.magnitude > 0f)
+        {
+
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
             run = true;
         }
+        else
+        {
+            run = false;
+        }
+
+
+
+
+
+        characterController.Move(direction.normalized * speed * Time.deltaTime);
 
         animator.SetBool("Run", run);
 
 
+    }
+
+    void jump()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+    }
 
 
-
+    void disableRightPunch()
+    {
+        setRightPunch(false);
     }
 
 

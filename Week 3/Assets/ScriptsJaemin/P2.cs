@@ -13,10 +13,19 @@ public class P2 : MonoBehaviour
 
     public Rigidbody rb;
     //public Rigidbody body;
+    Vector3 velocity;
+    bool isGrounded;
+
 
     public float speed = 1f;
     public float gravity = -20f;
     public float jumpHeight = 3f;
+
+
+
+    public Transform groundCheck;
+    public float groundDistance = 0.2f;
+    public LayerMask groundMask;
 
 
     public Animator animator;
@@ -24,11 +33,16 @@ public class P2 : MonoBehaviour
     public bool moveable = true;
     public Collider rightFist;
     public bool punch;
+    //public float height;
+
 
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
 
     public Vector3 direction = new Vector3 (0f,0f,0f);
+
+
+    Collider jumpCollider;
 
 
 
@@ -39,13 +53,22 @@ public class P2 : MonoBehaviour
         setRigidbodyState(true);
         setColliderState(false);
         setRightPunch(false);
+
+        jumpCollider = groundCheck.GetComponent<Collider>();
+
+        
+
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        //height = me.position.y;
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        
         if (isDead)
         {
             die();
@@ -60,6 +83,17 @@ public class P2 : MonoBehaviour
         {
             move();
         }
+
+        if (isGrounded && (velocity.y < -1))
+        {
+            velocity.y = -2f;
+            animator.SetBool("Jump", false);
+        }
+
+        jumpCollider.enabled = true;
+
+
+
 
 
     }
@@ -147,7 +181,7 @@ public class P2 : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic = !state;
         }
 
-
+        //groundCheck.GetComponent<Collider>().enabled = true;
         rightFist.enabled = true;
     }
 
@@ -162,28 +196,36 @@ public class P2 : MonoBehaviour
     void move ()
     {
 
-        if (Input.GetKey(KeyCode.Slash))
+
+        // jump.
+        if (Input.GetKeyDown(KeyCode.KeypadPeriod))
         {
-            Debug.Log("Punch key detected.");
+            Debug.Log("jump key detected.");
+            jump();
+            animator.SetBool("Jump", true);
+
+        }
+
+
+        // punch.
+        if (Input.GetKey(KeyCode.Keypad0))
+        {
+            //Debug.Log("Punch key detected.");
             setRightPunch(true);
+            //Invoke("disableRightPunch", 10f);
             return;
         }
         else
         {
             setRightPunch(false);
         }
-        direction = new Vector3(0f, 0f, 0f);
-        // if punching, don't run.
 
-        if (Input.GetKey(KeyCode.Keypad0))
-        {
-            Debug.Log("Space key detected.");
-            animator.SetBool("Jump", true);
-        }
-        else
-        {
-            animator.SetBool("Jump", false);
-        }
+
+
+
+
+
+        direction = new Vector3(0f, 0f, 0f);
 
 
 
@@ -227,6 +269,11 @@ public class P2 : MonoBehaviour
 
         }
 
+
+        velocity.y += gravity * Time.deltaTime;
+
+        characterController.Move(velocity * Time.deltaTime);
+
         if (direction.normalized.magnitude > 0f)
         {
 
@@ -244,12 +291,24 @@ public class P2 : MonoBehaviour
 
 
         
-        
+      
         characterController.Move(direction.normalized * speed * Time.deltaTime);
         
         animator.SetBool("Run", run);
 
 
+    }
+
+    void jump()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+    }
+
+
+    void disableRightPunch()
+    {
+        setRightPunch(false);
     }
 
 
