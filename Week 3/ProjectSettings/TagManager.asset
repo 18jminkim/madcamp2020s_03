@@ -7,6 +7,8 @@ TagManager:
   - Punch
   - P2
   - P1
+  - Ground
+  - Obstacle
   layers:
   - Default
   - TransparentFX

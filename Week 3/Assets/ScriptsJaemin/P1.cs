@@ -143,8 +143,39 @@ public class P1 : MonoBehaviour
 
 
             Invoke("revive", 2f);
+        }
+
+
+
+
+
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit collision)
+    {
+        Debug.Log("P1 collision.");
+        if (collision.gameObject.tag == "Obstacle")
+        {
+
+            setRightPunch(false);
+            //rb.isKinematic = false;
+            Debug.Log("Collided with obstacle.");
+
+            die();
+
+            Vector3 direction = me.position - collision.transform.position;
+            rb.AddForce(direction.normalized * power, ForceMode.Impulse);
+            Debug.Log("Collision");
+
+
+            Invoke("revive", 2f);
 
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+ 
     }
 
 
@@ -198,7 +229,7 @@ public class P1 : MonoBehaviour
 
 
         // jump.
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("jump key detected.");
             jump();

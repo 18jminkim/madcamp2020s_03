@@ -198,7 +198,7 @@ public class P2 : MonoBehaviour
 
 
         // jump.
-        if (Input.GetKeyDown(KeyCode.KeypadPeriod))
+        if (isGrounded && Input.GetKeyDown(KeyCode.KeypadPeriod))
         {
             Debug.Log("jump key detected.");
             jump();
