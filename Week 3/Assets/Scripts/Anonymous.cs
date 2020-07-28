@@ -12,6 +12,7 @@ public class Anonymous : MonoBehaviour
     public bool isDead; // for debugging only.
     public CharacterController characterController;
 
+
     public Rigidbody rb;
     //public Rigidbody body;
     Vector3 velocity;
@@ -43,6 +44,7 @@ public class Anonymous : MonoBehaviour
     public Vector3 direction = new Vector3(0f, 0f, 0f);
 
     private readonly System.Random random = new System.Random();
+    public int offset;
     private int dirVal;
 
 
@@ -64,6 +66,7 @@ public class Anonymous : MonoBehaviour
         if (!isDead && moveable)
         {
             randomMove();
+            characterController.enabled = true;
         }
 
 
@@ -78,15 +81,6 @@ public class Anonymous : MonoBehaviour
         //height = me.position.y;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (isDead)
-        {
-            die();
-            //characterController.center = me.position + new Vector3(0f, 0.91f, 0f);
-        }
-        else
-        {
-            revive();
-        }
 
 
 
@@ -296,7 +290,7 @@ public class Anonymous : MonoBehaviour
             return;
         }
 
-        dirVal = random.Next(8);
+        dirVal = (random.Next(8) + offset) % 8;
         float x = 0f;
         float y = 0f;
         float z = 0f;

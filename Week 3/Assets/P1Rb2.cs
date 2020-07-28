@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class P1Rb2 : MonoBehaviour
 {
+    public int redPoint;
+    public int bluePoint;
+    public ClearManager manager;
     public CamScript cam;
     public Rigidbody characterRb;
     public Collider characterCol;
@@ -64,7 +67,15 @@ public class P1Rb2 : MonoBehaviour
             jump = true;
             animator.SetBool("Jump", true);
         }
-        jumpCollider.enabled = true;
+        if ((!dead) && isGrounded())
+        {
+            jumpCollider.enabled = true;
+        }
+        else
+        {
+            jumpCollider.enabled = false;
+
+        }
 
 
 
@@ -93,6 +104,9 @@ public class P1Rb2 : MonoBehaviour
             Vector3 direction = me.position - collision.transform.position;
             hitPoint.AddForce(direction.normalized * power, ForceMode.Impulse);
 
+            bluePoint++;
+            manager.setBluePoint(bluePoint);
+
 
             Invoke("revive", 2f);
         }
@@ -105,12 +119,15 @@ public class P1Rb2 : MonoBehaviour
 
         if (collision.gameObject.tag == "P2")
         {
-            //Debug.Log("Received punch from " + opponent.gameObject.name);
+            Debug.Log("Received punch from " + collision.gameObject.name);
             // turn into ragdoll
             die();
             //characterRb.isKinematic = false;
             Vector3 direction = me.position - opponent.position;
             hitPoint.AddForce(direction.normalized * power, ForceMode.Impulse);
+
+            bluePoint++;
+            manager.setBluePoint(bluePoint);
 
 
             Invoke("revive", 2f);

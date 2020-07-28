@@ -2259,7 +2259,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Score
+  m_Text: Classic
 --- !u!222 &872173717
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4629,8 +4629,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1533864672}
-  - component: {fileID: 1533864673}
   - component: {fileID: 1533864674}
+  - component: {fileID: 1533864673}
   m_Layer: 5
   m_Name: 'Select Map: Anounymous'
   m_TagString: Untagged
@@ -4671,10 +4671,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1533864671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3393d4b57164ead4dbd75c23b9f769a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 210bb658c9a72c741b5cd1c568b15274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1533864674}
+  audioSource: {fileID: 0}
 --- !u!82 &1533864674
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4856,17 +4856,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1533864673}
         m_MethodName: OnClickForestBtn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1533864673}
-        m_MethodName: clickAudio
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5110,8 +5099,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1791495676}
-  - component: {fileID: 1791495677}
   - component: {fileID: 1791495678}
+  - component: {fileID: 1791495677}
   m_Layer: 5
   m_Name: 'Select Map: DodgeBall'
   m_TagString: Untagged
@@ -5150,10 +5139,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1791495675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3393d4b57164ead4dbd75c23b9f769a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fabfa4a8287d5748b977450a512e351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 1791495678}
+  audioSource: {fileID: 0}
 --- !u!82 &1791495678
 AudioSource:
   m_ObjectHideFlags: 0

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class P2Rb2 : MonoBehaviour
 {
+    public int redPoint;
+    public int bluePoint;
+    public ClearManager manager;
     public CamScript cam;
     public Rigidbody characterRb;
     public Collider characterCol;
@@ -64,7 +67,18 @@ public class P2Rb2 : MonoBehaviour
             jump = true;
             animator.SetBool("Jump", true);
         }
-        jumpCollider.enabled = true;
+
+
+
+        if ((!dead) && isGrounded())
+        {
+            jumpCollider.enabled = true;
+        }
+        else
+        {
+            jumpCollider.enabled = false;
+
+        }
 
 
 
@@ -93,6 +107,9 @@ public class P2Rb2 : MonoBehaviour
             Vector3 direction = me.position - collision.transform.position;
             hitPoint.AddForce(direction.normalized * power, ForceMode.Impulse);
 
+            redPoint++;
+            manager.setRedPoint(redPoint);
+
 
             Invoke("revive", 2f);
         }
@@ -111,6 +128,9 @@ public class P2Rb2 : MonoBehaviour
             //characterRb.isKinematic = false;
             Vector3 direction = me.position - opponent.position;
             hitPoint.AddForce(direction.normalized * power, ForceMode.Impulse);
+
+            redPoint++;
+            manager.setRedPoint(redPoint);
 
 
             Invoke("revive", 2f);
