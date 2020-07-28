@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SelectMap_Punch : MonoBehaviour
+public class SelectMap_Anounymous : MonoBehaviour
 {
     public AudioSource audioSource;
     public void OnClickForestBtn()
     {
-        SceneManager.LoadScene("Forest_Score");
+        SceneManager.LoadScene("Forest_Anounymous");
         audioSource.Play();
     }
 
     public void OnClickTownBtn()
     {
-        SceneManager.LoadScene("Town_Score");
+        SceneManager.LoadScene("Town_Anounymous");
         audioSource.Play();
     }
 
     public void OnClickMatrixBtn()
     {
-        SceneManager.LoadScene("Matrix_Score");
+        SceneManager.LoadScene("Matrix_Anounymous");
         audioSource.Play();
     }
 

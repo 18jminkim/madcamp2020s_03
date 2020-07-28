@@ -224,7 +224,7 @@ public class P2_Forest : MonoBehaviour
 
         // not punching. Can run.
         //run = false;
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             //transform.Translate(Vector3.right * speed);
             //characterController.Move(Vector3.right * speed * Time.deltaTime);
@@ -234,7 +234,7 @@ public class P2_Forest : MonoBehaviour
 
 
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             //transform.Translate(-Vector3.right * speed);
             //characterController.Move(-Vector3.right * speed * Time.deltaTime);
@@ -242,7 +242,7 @@ public class P2_Forest : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             //transform.Translate(Vector3.forward * speed);
             //characterController.Move(Vector3.forward * speed * Time.deltaTime);
@@ -252,7 +252,7 @@ public class P2_Forest : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             //transform.Translate(-Vector3.forward * speed);
             //characterController.Move(-Vector3.forward * speed * Time.deltaTime);

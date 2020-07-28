@@ -8,22 +8,37 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Menu.unity
     guid: c60c0d8235d30cc48bb2d9d838562c25
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/Map2.unity
     guid: 6333e954bd439df499ec32432e9fc9c9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map/MAP_Forest.unity
     guid: 693cbe54de178d84490a18cd8d1145bd
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Map/Matrix.unity
+    path: Assets/Scenes/Map/Matrix_Score.unity
     guid: afe124a1136d6bb4fb53732b0a2cd1bf
   - enabled: 1
-    path: Assets/Scenes/Map/Town.unity
+    path: Assets/Scenes/Map/Town_Score.unity
     guid: d2809ab9b90eea7419d8d90d4c505d35
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Map/Forest.unity
-    guid: 2b02c29601fc84e49a18fde7fed33f95
+    path: Assets/Scenes/Map/Forest_Score.unity
+    guid: a50ff117eb0d08d4d8d03fc3e1f12e07
+  - enabled: 1
+    path: Assets/Scenes/Map/Forest_Anounymous.unity
+    guid: 9052c9fbb7fa889429e3ed054c5d60e1
+  - enabled: 1
+    path: Assets/Scenes/Map/Matrix_Anounymous.unity
+    guid: 689914928ad34734c97fd0a6aef63c44
+  - enabled: 1
+    path: Assets/Scenes/Map/Matrix_DodgeBall.unity
+    guid: 0440b9bca07f85141a1ed0db56a68676
+  - enabled: 1
+    path: Assets/Scenes/Map/Town_Anounymous.unity
+    guid: 6179fe433dd55ab48a8abbeb544d2ae3
   m_configObjects: {}
