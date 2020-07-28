@@ -55,12 +55,6 @@ public class P1 : MonoBehaviour
         setRightPunch(false);
 
         jumpCollider = groundCheck.GetComponent<Collider>();
-
-
-
-
-
-
     }
 
     // Update is called once per frame

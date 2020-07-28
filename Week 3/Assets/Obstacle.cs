@@ -28,19 +28,6 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if ((me.position - lastP).magnitude > thresholdV  )
-        {
-            col.enabled = true;
-        }
-        else
-        {
-            col.enabled = false;
-        }
-        */
-
-
-        lastP = me.position;
 
     }
 
@@ -51,7 +38,7 @@ public class Obstacle : MonoBehaviour
 
         string tag = collision.gameObject.tag;
         Transform hitter = null;
-
+        Debug.Log("Trigger");
 
         if (tag == "P1")
         {

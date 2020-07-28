@@ -188,8 +188,10 @@ public class Anonymous : MonoBehaviour
             rb.AddForce(direction.normalized * power, ForceMode.Impulse);
             
             Debug.Log("Obstacle hit");
-            //Invoke("revive", 2f);
+            Invoke("revive", 2f);
         }
+
+        
 
 
 

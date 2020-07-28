@@ -120,7 +120,7 @@ public class P2 : MonoBehaviour
         isDead = false;
         setRightPunch(false);
         //me.SetPositionAndRotation(characterController.center, new Quaternion()) ;
-        
+        characterController.transform.position = rb.position;
 
 
 

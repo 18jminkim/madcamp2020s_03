@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class P1Rb2 : MonoBehaviour
+public class P2Rb2 : MonoBehaviour
 {
     public CamScript cam;
     public Rigidbody characterRb;
@@ -57,7 +57,7 @@ public class P1Rb2 : MonoBehaviour
     {
 
         //jump
-        if ((!dead)&&  isGrounded() && Input.GetKeyDown(KeyCode.Space))
+        if ((!dead) && isGrounded() && Input.GetKeyDown(KeyCode.KeypadPeriod))
         {
             characterRb.AddForce(new Vector3(0f, jumpHeight, 0f), ForceMode.Impulse);
             Debug.Log("Rb jump key detected.");
@@ -73,7 +73,7 @@ public class P1Rb2 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if ( (!dead) && movable)
+        if ((!dead) && movable)
         {
             move();
         }
@@ -86,7 +86,7 @@ public class P1Rb2 : MonoBehaviour
 
         if (collision.gameObject.tag == "Obstacle" && collision.relativeVelocity.magnitude > thresholdV)
         {
-            Debug.Log("P1 struck by an obstacle");
+            Debug.Log("P2 struck by an obstacle");
             // turn into ragdoll
             die();
             //characterRb.isKinematic = false;
@@ -101,11 +101,11 @@ public class P1Rb2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        
 
-        if (collision.gameObject.tag == "P2")
+
+        if (collision.gameObject.tag == "P1")
         {
-            //Debug.Log("Received punch from " + opponent.gameObject.name);
+            //Debug.Log("Received punch from " + collision.gameObject.name);
             // turn into ragdoll
             die();
             //characterRb.isKinematic = false;
@@ -120,7 +120,7 @@ public class P1Rb2 : MonoBehaviour
     }
 
 
-  
+
 
 
 
@@ -128,7 +128,7 @@ public class P1Rb2 : MonoBehaviour
     void move()
     {
         // punch.
-        if (Input.GetKey(KeyCode.G))
+        if (Input.GetKey(KeyCode.Keypad0))
         {
             //Debug.Log("Punch key detected.");
             setRightPunch(true);
@@ -140,8 +140,10 @@ public class P1Rb2 : MonoBehaviour
         }
 
         // translation
-        float x = Input.GetAxis("Horizontal1");
-        float z = Input.GetAxis("Vertical1");
+        
+        float x = Input.GetAxis("Horizontal2");
+        float z = Input.GetAxis("Vertical2");
+        //Debug.Log(x.ToString() + " " + z.ToString());
         Vector3 direction = new Vector3(x, 0f, z).normalized;
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
 
@@ -189,7 +191,7 @@ public class P1Rb2 : MonoBehaviour
         }
         characterCol.enabled = !state;
 
-        
+
     }
 
     bool isGrounded()

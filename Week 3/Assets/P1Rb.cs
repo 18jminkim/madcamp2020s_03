@@ -333,7 +333,6 @@ public class P1Rb : MonoBehaviour
     void jump()
     {
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-
     }
 
 
