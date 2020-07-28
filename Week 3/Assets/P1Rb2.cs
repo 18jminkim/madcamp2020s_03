@@ -140,8 +140,8 @@ public class P1Rb2 : MonoBehaviour
         }
 
         // translation
-        float x = Input.GetAxis("Horizontal1");
-        float z = Input.GetAxis("Vertical1");
+        float x = Input.GetAxisRaw("Horizontal1");
+        float z = Input.GetAxisRaw("Vertical1");
         Vector3 direction = new Vector3(x, 0f, z).normalized;
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
 

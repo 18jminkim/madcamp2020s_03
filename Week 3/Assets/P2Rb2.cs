@@ -141,8 +141,8 @@ public class P2Rb2 : MonoBehaviour
 
         // translation
         
-        float x = Input.GetAxis("Horizontal2");
-        float z = Input.GetAxis("Vertical2");
+        float x = Input.GetAxisRaw("Horizontal2");
+        float z = Input.GetAxisRaw("Vertical2");
         //Debug.Log(x.ToString() + " " + z.ToString());
         Vector3 direction = new Vector3(x, 0f, z).normalized;
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
