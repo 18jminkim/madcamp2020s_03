@@ -153,9 +153,9 @@ public class P1 : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit collision)
     {
-        Debug.Log("P1 collision.");
         if (collision.gameObject.tag == "Obstacle")
         {
+            Debug.Log("P1 collision.");
 
             setRightPunch(false);
             //rb.isKinematic = false;
@@ -171,11 +171,13 @@ public class P1 : MonoBehaviour
             Invoke("revive", 2f);
 
         }
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
- 
+
+
     }
 
 

@@ -28,6 +28,7 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if ((me.position - lastP).magnitude > thresholdV  )
         {
             col.enabled = true;
@@ -36,6 +37,8 @@ public class Obstacle : MonoBehaviour
         {
             col.enabled = false;
         }
+        */
+
 
         lastP = me.position;
 

@@ -76,7 +76,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: e606779ad47fbef4490852d7acf8cc44,
+  m_Motion: {fileID: -203655887218126122, guid: e376666c6bd10f548891f8381b821346,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -237,19 +237,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Run
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Jump
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -280,7 +280,7 @@ AnimatorStateMachine:
     m_Position: {x: 400, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8098294942266319421}
-    m_Position: {x: 520, y: 610, z: 0}
+    m_Position: {x: 460, y: 600, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7854653457982590157}
     m_Position: {x: 150, y: 810, z: 0}

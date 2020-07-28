@@ -139,12 +139,46 @@ public class P2 : MonoBehaviour
 
             Vector3 direction = me.position - opponent.position;
             rb.AddForce(direction.normalized * power, ForceMode.Impulse);
-            Debug.Log("punch");
+            Debug.Log("P2 collided with "  + collision.gameObject.name);
             
 
             Invoke("revive", 2f);
 
         }
+    }
+
+
+
+
+
+    private void OnControllerColliderHit(ControllerColliderHit collision)
+    {
+
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            Debug.Log("P1 collision.");
+
+            setRightPunch(false);
+            //rb.isKinematic = false;
+            Debug.Log("Collided with obstacle.");
+
+            die();
+
+            Vector3 direction = me.position - collision.transform.position;
+            rb.AddForce(direction.normalized * power, ForceMode.Impulse);
+            Debug.Log("Collision");
+
+
+            Invoke("revive", 2f);
+
+        }
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+       
+
     }
 
 
