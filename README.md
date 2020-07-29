@@ -10,7 +10,7 @@ madcamp 2020s week 3.
 #### - Any valid 'hit' on a player instantly results in a K.O. The first player who scores three K.Os wins the match.
 #### - There are three maps with three different gaming modes:
 ####  - Classic: a clean, fair, 1 vs. 1 fight.
-####  - Dodgeball: obstacles can be punch to throw at another player. Collision with a fast-travelling obstacle results in a K.O.
+####  - Dodgeball: can punch obstacles to throw at another player. Collision with a fast-travelling obstacle results in a K.O.
 ####  - Anonymous: two players have the exact same color, as well as ~8 bots moving in randomized directions. Try not expose yourself, while identifying your opponent!
   
   
